@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Notey</string>
     <string name="img_description">Girl searching background</string>
+    <string name="btn_txt_done">Save</string>
+    <string name="txt_field_notes">Notes</string>
+    <string name="txt_field_title">Title</string>
+    <string name="snackbar_error">Title or Note cannot be empty!</string>
+    <string name="snackbar_pass">Todo created</string>
 </resources>

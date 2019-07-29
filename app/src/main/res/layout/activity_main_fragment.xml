@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/todo_fragment_container"
-    tools:context=".Controllers.NoteActivity">
+    tools:context=".Controllers.NoteActivity"
+    >
 
 </android.support.design.widget.CoordinatorLayout>
