@@ -1,9 +1,27 @@
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraint_layout"
+    android:id="@+id/swipe_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
+    <ImageButton
+        android:id="@+id/trash"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/ripple_effect"
+        android:clickable="true"
+        android:focusable="true"
+        app:srcCompat="@drawable/ic_delete_white_24dp"
+         />
+
+
+<android.support.constraint.ConstraintLayout
+    android:id="@+id/constraint_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:background="?attr/selectableItemBackground">
 
     <TextView
         android:id="@+id/todo_title"
@@ -26,3 +44,5 @@
         app:layout_constraintTop_toBottomOf="@+id/todo_title" />
 
 </android.support.constraint.ConstraintLayout>
+
+</com.daimajia.swipe.SwipeLayout>
