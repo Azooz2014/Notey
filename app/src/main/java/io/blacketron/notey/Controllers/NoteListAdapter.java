@@ -2,7 +2,6 @@ package io.blacketron.notey.Controllers;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +13,7 @@ import com.daimajia.swipe.SwipeLayout;
 import java.util.List;
 
 import io.blacketron.notey.Models.Note;
+import io.blacketron.notey.Models.NotesStorage;
 import io.blacketron.notey.R;
 
 public class NoteListAdapter extends RecyclerView.Adapter<NoteListViewHolder> {
@@ -48,9 +48,9 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NoteListViewHolder noteListViewHolder, int i) {
+    public void onBindViewHolder(@NonNull final NoteListViewHolder noteListViewHolder, int i) {
 
-        Note note = mNotes.get(i);
+        final Note note = mNotes.get(i);
 
         noteListViewHolder.bind(note);
 
@@ -58,15 +58,32 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListViewHolder> {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(v.getContext(), "Delete Button Clicked!", Toast.LENGTH_SHORT).show();
+                deleteNote(v, note);
 
-                Log.d("Delete Button","Delete Button Clicked!");
+                Toast.makeText(v.getContext(), "Todo Deleted!", Toast.LENGTH_SHORT).show();
+
             }
         });
+    }
+
+    private void deleteNote(View view, Note note){
+
+       NotesStorage notesStorage = NotesStorage.get(view.getContext());
+
+       notesStorage.deleteNote(note);
+
+       setNotes(notesStorage.getNotes());
+
+       notifyDataSetChanged();
+
     }
 
     @Override
     public int getItemCount() {
         return mNotes.size();
+    }
+
+    public void setNotes (List<Note> notes){
+        mNotes = notes;
     }
 }

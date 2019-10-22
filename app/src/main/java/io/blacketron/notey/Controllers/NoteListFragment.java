@@ -54,6 +54,13 @@ public class NoteListFragment extends Fragment implements View.OnClickListener{
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+
+        updateList();
+    }
+
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -67,7 +74,7 @@ public class NoteListFragment extends Fragment implements View.OnClickListener{
         startActivityForResult(intent,0);
     }
 
-    public void updateList(){
+    private void updateList(){
 
         NotesStorage notesStorage = NotesStorage.get(getContext());
         List<Note> notes = notesStorage.getNotes();
@@ -78,6 +85,7 @@ public class NoteListFragment extends Fragment implements View.OnClickListener{
             mRecyclerView.setAdapter(mNoteListAdapter);
         }else {
 
+            mNoteListAdapter.setNotes(notes);
             mNoteListAdapter.notifyDataSetChanged();
         }
     }

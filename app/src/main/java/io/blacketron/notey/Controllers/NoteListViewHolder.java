@@ -1,8 +1,8 @@
 package io.blacketron.notey.Controllers;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
@@ -14,6 +14,7 @@ public class NoteListViewHolder extends RecyclerView.ViewHolder implements View.
 
     private TextView mTodoTitle;
     private TextView mTodoNote;
+    private ConstraintLayout mTodoContainer;
 
     private Note mNote;
 
@@ -22,9 +23,12 @@ public class NoteListViewHolder extends RecyclerView.ViewHolder implements View.
 
         mTodoTitle = itemView.findViewById(R.id.todo_title);
         mTodoNote = itemView.findViewById(R.id.todo_note);
+        mTodoContainer = itemView.findViewById(R.id.todo_container);
 
-        mTodoTitle.setOnClickListener(this);
-        mTodoNote.setOnClickListener(this);
+
+        /*mTodoTitle.setOnClickListener(this);
+        mTodoNote.setOnClickListener(this);*/
+        mTodoContainer.setOnClickListener(this);
     }
 
     /*public TextView getTodoTitle() {

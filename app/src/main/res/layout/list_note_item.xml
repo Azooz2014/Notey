@@ -17,11 +17,12 @@
 
 
 <android.support.constraint.ConstraintLayout
-    android:id="@+id/constraint_layout"
+    android:id="@+id/todo_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clickable="true"
-    android:background="?attr/selectableItemBackground">
+    android:background="?attr/selectableItemBackground"
+    android:focusable="true">
 
     <TextView
         android:id="@+id/todo_title"

@@ -101,6 +101,8 @@ public class NoteFragment extends Fragment implements View.OnClickListener{
             getActivity().setResult(Activity.RESULT_OK);
             getActivity().finish();
 
+            //TODO: Fix Bug where if something changed in existing note and clicked save, it will create new note instead of updating existing one.
+
         }else {
 
             Snackbar.make(v, R.string.snackbar_error, Snackbar.LENGTH_SHORT).show();

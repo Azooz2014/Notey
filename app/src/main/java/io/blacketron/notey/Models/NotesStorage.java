@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,11 +55,17 @@ public class NotesStorage {
         mDatabase.insert(NoteDbSchema.NoteTable.NAME, null, values);
     }
 
-    public void removeCrime(Note note) {
+    public void deleteNote(Note note) {
 
         mDatabase.delete(NoteDbSchema.NoteTable.NAME,
                 NoteDbSchema.NoteTable.Columns.UUID + " = ?",
                 new String[]{note.getId().toString()});
+
+    }
+
+    public void undoDeleteNote(){
+
+        //TODO: find a way to re-add the last deleted row back to the DB , in the same Row index.
 
     }
 
