@@ -28,7 +28,7 @@ public class NotesStorage {
         /*for(int i = 1; i <= 100; i++){
 
             Note note = new Note();
-            note.setTitle("todo #" + i);
+            note.setTitle("odo #" + i);
             note.setNotes("Note #" + i);
             mNotes.add(note);
 

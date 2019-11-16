@@ -22,6 +22,8 @@ import io.blacketron.notey.R;
 
 public class NoteListFragment extends Fragment implements View.OnClickListener{
 
+    public static final int LIST_FRAGMENT_REQUEST_CODE = 0;
+
     private View mView;
 
     private FloatingActionButton mFab;
@@ -64,14 +66,14 @@ public class NoteListFragment extends Fragment implements View.OnClickListener{
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Snackbar.make(mView, R.string.snackbar_pass, Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(mView, R.string.snackbar_pass, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
     public void onClick(View v) {
 
         Intent intent = NoteActivity.newIntent(getContext());
-        startActivityForResult(intent,0);
+        startActivityForResult(intent,LIST_FRAGMENT_REQUEST_CODE);
     }
 
     private void updateList(){

@@ -76,20 +76,10 @@ public class NoteFragment extends Fragment implements View.OnClickListener{
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
-
-        if(mNote != null) {
-
-            NotesStorage.get(getContext()).updateNote(mNote);
-        }
-    }
-
-    @Override
     public void onClick(View v) {
 
 
-        if(!mTxtFieldTitle.getText().toString().isEmpty() || !mTxtFieldNote.getText().toString().isEmpty()){
+        if(mNote == null && (!mTxtFieldTitle.getText().toString().isEmpty() || !mTxtFieldNote.getText().toString().isEmpty())){
 
             mNote = new Note();
 
@@ -101,12 +91,27 @@ public class NoteFragment extends Fragment implements View.OnClickListener{
             getActivity().setResult(Activity.RESULT_OK);
             getActivity().finish();
 
-            //TODO: Fix Bug where if something changed in existing note and clicked save, it will create new note instead of updating existing one.
+        } else if(mNote != null){
 
-        }else {
+            updateNote();
+
+            getActivity().setResult(Activity.RESULT_OK);
+            getActivity().finish();
+        }
+
+        else {
 
             Snackbar.make(v, R.string.snackbar_error, Snackbar.LENGTH_SHORT).show();
 
         }
+    }
+
+    /*Updates existing Note*/
+    public void updateNote(){
+
+        mNote.setTitle(mTxtFieldTitle.getText().toString());
+        mNote.setNotes(mTxtFieldNote.getText().toString());
+        NotesStorage.get(getContext()).updateNote(mNote);
+
     }
 }

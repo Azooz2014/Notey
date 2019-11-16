@@ -12,6 +12,8 @@ import io.blacketron.notey.R;
 
 public class NoteListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+//    public static final int VH_REQUEST_CODE = 1;
+
     private TextView mTodoTitle;
     private TextView mTodoNote;
     private ConstraintLayout mTodoContainer;
@@ -43,6 +45,8 @@ public class NoteListViewHolder extends RecyclerView.ViewHolder implements View.
     public void onClick(View v) {
 
         Intent intent = NoteActivity.newIntent(itemView.getContext(), mNote.getId());
+
+//        ((Activity)itemView.getContext()).startActivityForResult(intent, VH_REQUEST_CODE);
 
         itemView.getContext().startActivity(intent);
     }

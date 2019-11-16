@@ -6,4 +6,5 @@
     <color name="colorError">#B00020</color>
     <color name="colorDelete">#D50000</color>
     <color name="colorRipple">#EEEEEE</color>
+    <color name="textColorPrimary">#000</color>
 </resources>
