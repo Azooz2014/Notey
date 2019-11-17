@@ -2,7 +2,7 @@ package io.blacketron.notey.Controllers;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
+import android.support.design.card.MaterialCardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
@@ -16,7 +16,7 @@ public class NoteListViewHolder extends RecyclerView.ViewHolder implements View.
 
     private TextView mTodoTitle;
     private TextView mTodoNote;
-    private ConstraintLayout mTodoContainer;
+    private MaterialCardView mTodoContainer;
 
     private Note mNote;
 
