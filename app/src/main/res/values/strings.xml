@@ -8,4 +8,5 @@
     <string name="snackbar_pass">Note Created</string>
     <string name="snackbar_update">Note Updated</string>
     <string name="snackbar_deleted">Note Deleted</string>
+
 </resources>

@@ -18,7 +18,7 @@ import io.blacketron.notey.Models.Note;
 import io.blacketron.notey.Models.NotesStorage;
 import io.blacketron.notey.R;
 
-public class NoteFragment extends Fragment implements View.OnClickListener{
+public class NoteFragment extends Fragment implements View.OnClickListener {
 
     private static final String ARG_NOTE_ID = "note_id";
 
@@ -47,7 +47,7 @@ public class NoteFragment extends Fragment implements View.OnClickListener{
         UUID noteId = (UUID) getArguments()
                 .getSerializable(ARG_NOTE_ID);
 
-        if(noteId != null) {
+        if (noteId != null) {
             /*Fetching and getting Note saved in NotesStorage based on it's ID.*/
             mNote = NotesStorage.get(getContext()).getNote(noteId);
         }
@@ -65,8 +65,8 @@ public class NoteFragment extends Fragment implements View.OnClickListener{
         mBtnDone = view.findViewById(R.id.btn_done);
 
         mBtnDone.setOnClickListener(this);
-        
-        if(mNote != null) {
+
+        if (mNote != null) {
 
             mTxtFieldTitle.setText(mNote.getTitle());
             mTxtFieldNote.setText(mNote.getNotes());
@@ -79,7 +79,7 @@ public class NoteFragment extends Fragment implements View.OnClickListener{
     public void onClick(View v) {
 
 
-        if(mNote == null && (!mTxtFieldTitle.getText().toString().isEmpty() || !mTxtFieldNote.getText().toString().isEmpty())){
+        if (mNote == null && (!mTxtFieldTitle.getText().toString().isEmpty() || !mTxtFieldNote.getText().toString().isEmpty())) {
 
             mNote = new Note();
 
@@ -91,15 +91,13 @@ public class NoteFragment extends Fragment implements View.OnClickListener{
             getActivity().setResult(Activity.RESULT_OK);
             getActivity().finish();
 
-        } else if(mNote != null){
+        } else if (mNote != null) {
 
             updateNote();
 
             getActivity().setResult(Activity.RESULT_OK);
             getActivity().finish();
-        }
-
-        else {
+        } else {
 
             Snackbar.make(v, R.string.snackbar_error, Snackbar.LENGTH_SHORT).show();
 
@@ -107,11 +105,12 @@ public class NoteFragment extends Fragment implements View.OnClickListener{
     }
 
     /*Updates existing Note*/
-    public void updateNote(){
+    public void updateNote() {
 
         mNote.setTitle(mTxtFieldTitle.getText().toString());
         mNote.setNotes(mTxtFieldNote.getText().toString());
         NotesStorage.get(getContext()).updateNote(mNote);
 
     }
+
 }

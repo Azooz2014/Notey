@@ -67,7 +67,7 @@ public class NotesStorage {
 
         //TODO: find a way to re-add the last deleted row back to the DB , in the same Row index.
 
-    }
+         }
 
     public static NotesStorage get(Context context) {
 
