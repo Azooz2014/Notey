@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 
 import java.util.List;
 
@@ -18,10 +17,11 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListViewHolder> {
     private NoteListViewHolder mNoteListViewHolder;
 
     private List<Note> mNotes;
-    private ImageButton mDeleteButton;
+//    private SwipeLayout mSwipeLayout;
+//    private ImageButton mDeleteButton;
     private Note mNote;
 
-    public NoteListAdapter(List<Note> notes) {
+    public NoteListAdapter(List<Note> notes){
 
         this.mNotes = notes;
     }
@@ -35,7 +35,11 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListViewHolder> {
 
         mNoteListViewHolder = new NoteListViewHolder(view);
 
-//        mDeleteButton = view.findViewById(R.id.trash);
+       /* mDeleteButton = view.findViewById(R.id.trash);
+
+        mSwipeLayout = view.findViewById(R.id.swipe_layout);
+        mSwipeLayout.addDrag(SwipeLayout.DragEdge.Right, view.findViewById(R.id.trash));
+        mSwipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);*/
 
         return mNoteListViewHolder;
     }
@@ -59,15 +63,15 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListViewHolder> {
         });*/
     }
 
-    public void deleteNote(View view, Note note) {
+    public void deleteNote(View view, Note note){
 
-        NotesStorage notesStorage = NotesStorage.get(view.getContext());
+       NotesStorage notesStorage = NotesStorage.get(view.getContext());
 
-        notesStorage.deleteNote(note);
+       notesStorage.deleteNote(note);
 
-        setNotes(notesStorage.getNotes());
+       setNotes(notesStorage.getNotes());
 
-        notifyDataSetChanged();
+       notifyDataSetChanged();
     }
 
     @Override
@@ -75,12 +79,11 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListViewHolder> {
         return mNotes.size();
     }
 
-    public void setNotes(List<Note> notes) {
+    public void setNotes (List<Note> notes){
         mNotes = notes;
     }
 
     public Note getNote() {
         return mNote;
     }
-
 }

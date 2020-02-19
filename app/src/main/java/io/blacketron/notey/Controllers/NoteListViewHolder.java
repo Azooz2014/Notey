@@ -12,7 +12,7 @@ import io.blacketron.notey.R;
 
 public class NoteListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    //    public static final int VH_REQUEST_CODE = 1;
+//    public static final int VH_REQUEST_CODE = 1;
 
     private TextView mTodoTitle;
     private TextView mTodoNote;
@@ -31,7 +31,6 @@ public class NoteListViewHolder extends RecyclerView.ViewHolder implements View.
         /*mTodoTitle.setOnClickListener(this);
         mTodoNote.setOnClickListener(this);*/
         mTodoContainer.setOnClickListener(this);
-
     }
 
     /*public TextView getTodoTitle() {
@@ -47,13 +46,12 @@ public class NoteListViewHolder extends RecyclerView.ViewHolder implements View.
 
         Intent intent = NoteActivity.newIntent(itemView.getContext(), mNote.getId());
 
-        //((Activity)itemView.getContext()).startActivityForResult(intent, VH_REQUEST_CODE);
-
+//        ((Activity)itemView.getContext()).startActivityForResult(intent, VH_REQUEST_CODE);
 
         itemView.getContext().startActivity(intent);
     }
 
-    public void bind(Note note) {
+    public void bind(Note note){
 
         this.mNote = note;
 

@@ -25,7 +25,7 @@ import io.blacketron.notey.Utils.SwipeController;
 import io.blacketron.notey.Utils.SwipeControllerActions;
 
 //TODO: Improve cardview to wrap long notes like google keep does.
-public class NoteListFragment extends Fragment implements View.OnClickListener {
+public class NoteListFragment extends Fragment implements View.OnClickListener{
 
     public static final int LIST_FRAGMENT_REQUEST_CODE = 0;
 
@@ -76,45 +76,45 @@ public class NoteListFragment extends Fragment implements View.OnClickListener {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Snackbar.make(mView, R.string.snackbar_pass, Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(mView, R.string.snackbar_pass, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
     public void onClick(View v) {
 
         Intent intent = NoteActivity.newIntent(getContext());
-        startActivityForResult(intent, 0);
+        startActivityForResult(intent,LIST_FRAGMENT_REQUEST_CODE);
     }
 
-    private void updateList() {
+    private void updateList(){
 
         NotesStorage notesStorage = NotesStorage.get(getContext());
         List<Note> notes = notesStorage.getNotes();
 
-        if (mNoteListAdapter == null) {
+        if(mNoteListAdapter == null){
 
             mNoteListAdapter = new NoteListAdapter(notes);
             mRecyclerView.setAdapter(mNoteListAdapter);
-        } else {
+        }else {
 
             mNoteListAdapter.setNotes(notes);
             mNoteListAdapter.notifyDataSetChanged();
         }
     }
 
-    private void updateBackground() {
+    private void updateBackground(){
 
-        if (mNoteListAdapter.getItemCount() > 0) {
+        if(mNoteListAdapter.getItemCount() > 0){
 
             mBackground.setVisibility(View.GONE);
-        } else {
+        } else{
             mBackground.setVisibility(View.VISIBLE);
         }
     }
 
-    public void swipeHandler() {
+    public void swipeHandler(){
 
-        mSwipeController = new SwipeController(this.getContext(), new SwipeControllerActions() {
+          mSwipeController = new SwipeController(this.getContext(),new SwipeControllerActions() {
             @Override
             public void onRightClicked(View view, int position) {
 
