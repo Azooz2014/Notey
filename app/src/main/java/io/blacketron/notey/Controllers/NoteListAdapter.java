@@ -5,10 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.Toast;
-
-import com.daimajia.swipe.SwipeLayout;
 
 import java.util.List;
 
@@ -21,8 +17,9 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListViewHolder> {
     private NoteListViewHolder mNoteListViewHolder;
 
     private List<Note> mNotes;
-    private SwipeLayout mSwipeLayout;
-    private ImageButton mDeleteButton;
+//    private SwipeLayout mSwipeLayout;
+//    private ImageButton mDeleteButton;
+    private Note mNote;
 
     public NoteListAdapter(List<Note> notes){
 
@@ -38,11 +35,11 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListViewHolder> {
 
         mNoteListViewHolder = new NoteListViewHolder(view);
 
-        mDeleteButton = view.findViewById(R.id.trash);
+       /* mDeleteButton = view.findViewById(R.id.trash);
 
         mSwipeLayout = view.findViewById(R.id.swipe_layout);
         mSwipeLayout.addDrag(SwipeLayout.DragEdge.Right, view.findViewById(R.id.trash));
-        mSwipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
+        mSwipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);*/
 
         return mNoteListViewHolder;
     }
@@ -50,11 +47,11 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull final NoteListViewHolder noteListViewHolder, int i) {
 
-        final Note note = mNotes.get(i);
+        mNote = mNotes.get(i);
 
-        noteListViewHolder.bind(note);
+        noteListViewHolder.bind(mNote);
 
-        mDeleteButton.setOnClickListener(new View.OnClickListener() {
+        /*mDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -63,10 +60,10 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListViewHolder> {
                 Toast.makeText(v.getContext(), "Todo Deleted!", Toast.LENGTH_SHORT).show();
 
             }
-        });
+        });*/
     }
 
-    private void deleteNote(View view, Note note){
+    public void deleteNote(View view, Note note){
 
        NotesStorage notesStorage = NotesStorage.get(view.getContext());
 
@@ -75,7 +72,6 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListViewHolder> {
        setNotes(notesStorage.getNotes());
 
        notifyDataSetChanged();
-
     }
 
     @Override
@@ -85,5 +81,9 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListViewHolder> {
 
     public void setNotes (List<Note> notes){
         mNotes = notes;
+    }
+
+    public Note getNote() {
+        return mNote;
     }
 }

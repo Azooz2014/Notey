@@ -5,6 +5,7 @@
     <string name="txt_field_notes">Note</string>
     <string name="txt_field_title">Title</string>
     <string name="snackbar_error">Title or Note cannot be empty!</string>
-    <string name="snackbar_pass">Todo Created</string>
-    <string name="snackbar_update">Todo Updated</string>
+    <string name="snackbar_pass">Note Created</string>
+    <string name="snackbar_update">Note Updated</string>
+    <string name="snackbar_deleted">Note Deleted</string>
 </resources>
