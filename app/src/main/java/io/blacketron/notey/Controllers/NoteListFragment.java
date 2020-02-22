@@ -24,7 +24,7 @@ import io.blacketron.notey.R;
 import io.blacketron.notey.Utils.SwipeController;
 import io.blacketron.notey.Utils.SwipeControllerActions;
 
-//TODO: Improve cardview to wrap long notes like google keep does.
+
 public class NoteListFragment extends Fragment implements View.OnClickListener{
 
     public static final int LIST_FRAGMENT_REQUEST_CODE = 0;

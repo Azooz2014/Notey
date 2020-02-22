@@ -16,14 +16,12 @@ import io.blacketron.notey.Database.NoteDbSchema;
 public class NotesStorage {
 
     private static NotesStorage sNotesStorage;
-    private List<Note> mNotes;
     private SQLiteDatabase mDatabase;
+    private static ContentValues sValues;
 
     private NotesStorage(Context context) {
 
         //Generating Dummy data to fill and test RecyclerView.
-
-        mNotes = new ArrayList<>();
 
         /*for(int i = 1; i <= 100; i++){
 
@@ -39,20 +37,20 @@ public class NotesStorage {
 
     private static ContentValues getContentValues(Note note) {
 
-        ContentValues values = new ContentValues();
+        sValues = new ContentValues();
 
-        values.put(NoteDbSchema.NoteTable.Columns.UUID, note.getId().toString());
-        values.put(NoteDbSchema.NoteTable.Columns.TITLE, note.getTitle());
-        values.put(NoteDbSchema.NoteTable.Columns.NOTES, note.getNotes());
+        sValues.put(NoteDbSchema.NoteTable.Columns.UUID, note.getId().toString());
+        sValues.put(NoteDbSchema.NoteTable.Columns.TITLE, note.getTitle());
+        sValues.put(NoteDbSchema.NoteTable.Columns.NOTES, note.getNotes());
 
-        return values;
+        return sValues;
     }
 
     public void addNote(Note note) {
 
-        ContentValues values = getContentValues(note);
+        sValues = getContentValues(note);
 
-        mDatabase.insert(NoteDbSchema.NoteTable.NAME, null, values);
+        mDatabase.insert(NoteDbSchema.NoteTable.NAME, null, sValues);
     }
 
     public void deleteNote(Note note) {
@@ -135,9 +133,9 @@ public class NotesStorage {
 
         String uuidString = note.getId().toString();
 
-        ContentValues values = getContentValues(note);
+        sValues = getContentValues(note);
 
-        mDatabase.update(NoteDbSchema.NoteTable.NAME, values,
+        mDatabase.update(NoteDbSchema.NoteTable.NAME, sValues,
                 NoteDbSchema.NoteTable.Columns.UUID + " = ?", new String[]{uuidString});
     }
 
