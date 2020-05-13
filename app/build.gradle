@@ -6,10 +6,10 @@ android {
         applicationId "io.blacketron.notey"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 1
         versionName defaultVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        versionCode 1
 
     }
     buildTypes {

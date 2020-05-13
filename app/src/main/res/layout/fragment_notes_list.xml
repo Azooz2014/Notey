@@ -13,6 +13,22 @@
         app:srcCompat="@drawable/background_empty_list"
         android:contentDescription="@string/img_description" />
 
+    <TextView
+        android:id="@+id/list_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="76dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="@string/list_hint"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+        android:textColor="@android:color/black"
+        android:layout_gravity="bottom"/>
+
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

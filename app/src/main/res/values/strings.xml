@@ -8,4 +8,10 @@
     <string name="snackbar_pass">Note Created</string>
     <string name="snackbar_update">Note Updated</string>
     <string name="snackbar_deleted">Note Deleted</string>
+    <string name="menu_about">About</string>
+    <string name="menu_about_body">Crafted with ❤ by Abdelaziz Faki</string>
+    <string name="about_version">Version: %1$s</string>
+    <string name="github_link"> <a href="https://github.com/Azooz2014">Azooz2014</a></string>
+    <string name="email">fazouz2010@gmail.com</string>
+    <string name="list_hint">Click \"+\" to add new note</string>
 </resources>

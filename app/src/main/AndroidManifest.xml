@@ -4,11 +4,17 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_notey_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_notey_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:targetSdkVersion="28"
+        android:theme="@style/AppTheme"
+        android:versionCode="1">
+
+        <activity
+            android:name=".Controllers.Menu.MenuActivity"
+            android:parentActivityName=".Controllers.NoteListActivity"/>
         <activity android:name=".Controllers.NoteListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,8 +24,7 @@
         </activity>
         <activity
             android:name=".Controllers.NoteActivity"
-            android:parentActivityName=".Controllers.NoteListActivity">
-        </activity>
+            android:parentActivityName=".Controllers.NoteListActivity" />
     </application>
 
 </manifest>

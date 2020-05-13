@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -35,6 +36,8 @@ public class NoteListFragment extends Fragment implements View.OnClickListener{
 
     private ImageView mBackground;
 
+    private TextView mListHint;
+
     private RecyclerView mRecyclerView;
 
     private NoteListAdapter mNoteListAdapter;
@@ -51,6 +54,8 @@ public class NoteListFragment extends Fragment implements View.OnClickListener{
         mFab.setOnClickListener(this);
 
         mBackground = mView.findViewById(R.id.empty_list_background);
+
+        mListHint = mView.findViewById(R.id.list_hint);
 
         mRecyclerView = mView.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -107,8 +112,10 @@ public class NoteListFragment extends Fragment implements View.OnClickListener{
         if(mNoteListAdapter.getItemCount() > 0){
 
             mBackground.setVisibility(View.GONE);
+            mListHint.setVisibility(View.GONE);
         } else{
             mBackground.setVisibility(View.VISIBLE);
+            mListHint.setVisibility(View.VISIBLE);
         }
     }
 
