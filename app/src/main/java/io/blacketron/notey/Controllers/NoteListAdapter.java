@@ -1,5 +1,6 @@
 package io.blacketron.notey.Controllers;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,18 +13,23 @@ import io.blacketron.notey.Models.Note;
 import io.blacketron.notey.Models.NotesStorage;
 import io.blacketron.notey.R;
 
-public class NoteListAdapter extends RecyclerView.Adapter<NoteListViewHolder> {
+public class NoteListAdapter extends RecyclerView.Adapter<NoteListViewHolder>{
 
-    private NoteListViewHolder mNoteListViewHolder;
+    public static final int ADAPTER_REQUEST_CODE = 1;
 
     private List<Note> mNotes;
-//    private SwipeLayout mSwipeLayout;
-//    private ImageButton mDeleteButton;
     private Note mNote;
+    private NoteListFragment mNoteListFragment;
 
     public NoteListAdapter(List<Note> notes){
 
         this.mNotes = notes;
+    }
+
+    public NoteListAdapter(NoteListFragment noteListFragment, List<Note> notes){
+
+        this.mNotes = notes;
+        this.mNoteListFragment = noteListFragment;
     }
 
     @NonNull
@@ -33,15 +39,7 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListViewHolder> {
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.list_note_item, viewGroup, false);
 
-        mNoteListViewHolder = new NoteListViewHolder(view);
-
-       /* mDeleteButton = view.findViewById(R.id.trash);
-
-        mSwipeLayout = view.findViewById(R.id.swipe_layout);
-        mSwipeLayout.addDrag(SwipeLayout.DragEdge.Right, view.findViewById(R.id.trash));
-        mSwipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);*/
-
-        return mNoteListViewHolder;
+        return new NoteListViewHolder(view);
     }
 
     @Override
@@ -51,16 +49,15 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListViewHolder> {
 
         noteListViewHolder.bind(mNote);
 
-        /*mDeleteButton.setOnClickListener(new View.OnClickListener() {
+        noteListViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                deleteNote(v, note);
+                Intent intent = NoteActivity.newIntent(noteListViewHolder.itemView.getContext(), mNote.getId());
 
-                Toast.makeText(v.getContext(), "Todo Deleted!", Toast.LENGTH_SHORT).show();
-
+                mNoteListFragment.startActivityForResult(intent, ADAPTER_REQUEST_CODE);
             }
-        });*/
+        });
     }
 
     public void deleteNote(View view, Note note){

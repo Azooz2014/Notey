@@ -1,5 +1,6 @@
 package io.blacketron.notey.Controllers;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.Bundle;
@@ -81,7 +82,28 @@ public class NoteListFragment extends Fragment implements View.OnClickListener{
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-            Snackbar.make(mView, R.string.snackbar_pass, Snackbar.LENGTH_SHORT).show();
+        switch (requestCode){
+
+            case LIST_FRAGMENT_REQUEST_CODE:
+                if (resultCode == Activity.RESULT_OK){
+
+                    Snackbar.make(mView, R.string.snackbar_pass, Snackbar.LENGTH_SHORT).show();
+                } else{
+
+                    Snackbar.make(mView, R.string.snackbar_cancelled, Snackbar.LENGTH_SHORT).show();
+                }
+            break;
+
+            case NoteListAdapter.ADAPTER_REQUEST_CODE:
+                if (resultCode == Activity.RESULT_OK){
+
+                    Snackbar.make(mView, R.string.snackbar_update, Snackbar.LENGTH_SHORT).show();
+                } else{
+
+                    Snackbar.make(mView, R.string.snackbar_unchanged, Snackbar.LENGTH_SHORT).show();
+                }
+            break;
+        }
     }
 
     @Override
@@ -98,7 +120,7 @@ public class NoteListFragment extends Fragment implements View.OnClickListener{
 
         if(mNoteListAdapter == null){
 
-            mNoteListAdapter = new NoteListAdapter(notes);
+            mNoteListAdapter = new NoteListAdapter(this,notes);
             mRecyclerView.setAdapter(mNoteListAdapter);
         }else {
 
