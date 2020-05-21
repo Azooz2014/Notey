@@ -1,6 +1,5 @@
 package io.blacketron.notey.Controllers;
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,8 +13,6 @@ import io.blacketron.notey.Models.NotesStorage;
 import io.blacketron.notey.R;
 
 public class NoteListAdapter extends RecyclerView.Adapter<NoteListViewHolder>{
-
-    public static final int ADAPTER_REQUEST_CODE = 1;
 
     private List<Note> mNotes;
     private Note mNote;
@@ -39,25 +36,15 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListViewHolder>{
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.list_note_item, viewGroup, false);
 
-        return new NoteListViewHolder(view);
+        return new NoteListViewHolder(view,mNoteListFragment);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final NoteListViewHolder noteListViewHolder, int i) {
+    public void onBindViewHolder(@NonNull NoteListViewHolder noteListViewHolder, int i) {
 
         mNote = mNotes.get(i);
 
         noteListViewHolder.bind(mNote);
-
-        noteListViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = NoteActivity.newIntent(noteListViewHolder.itemView.getContext(), mNote.getId());
-
-                mNoteListFragment.startActivityForResult(intent, ADAPTER_REQUEST_CODE);
-            }
-        });
     }
 
     public void deleteNote(View view, Note note){

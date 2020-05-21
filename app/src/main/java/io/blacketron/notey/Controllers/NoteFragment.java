@@ -4,13 +4,12 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 
 import java.util.UUID;
 
@@ -22,8 +21,12 @@ public class NoteFragment extends Fragment implements View.OnClickListener{
 
     private static final String ARG_NOTE_ID = "note_id";
 
-    private EditText mTxtFieldNote;
-    private EditText mTxtFieldTitle;
+    private View mView;
+//    private EditText mTxtFieldNote;
+//    private EditText mTxtFieldTitle;
+    private TextInputLayout mTitleFieldWrapper;
+    private TextInputLayout mNoteFieldWrapper;
+
     private Button mBtnDone;
 
     private Note mNote;
@@ -58,59 +61,91 @@ public class NoteFragment extends Fragment implements View.OnClickListener{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_note, container, false);
+        mView = inflater.inflate(R.layout.fragment_note, container, false);
 
-        mTxtFieldNote = view.findViewById(R.id.noteField);
-        mTxtFieldTitle = view.findViewById(R.id.titleField);
-        mBtnDone = view.findViewById(R.id.btn_done);
+//        mTxtFieldNote = mView.findViewById(R.id.noteField);
+//        mTxtFieldTitle = mView.findViewById(R.id.titleField);
+
+        mTitleFieldWrapper = mView.findViewById(R.id.titleFieldWrapper);
+        mNoteFieldWrapper = mView.findViewById(R.id.noteFieldWrapper);
+        mBtnDone = mView.findViewById(R.id.btn_done);
 
         mBtnDone.setOnClickListener(this);
         
         if(mNote != null) {
 
-            mTxtFieldTitle.setText(mNote.getTitle());
-            mTxtFieldNote.setText(mNote.getNotes());
+//            mTxtFieldTitle.setText(mNote.getTitle());
+//            mTxtFieldNote.setText(mNote.getNotes());
+            mTitleFieldWrapper.getEditText().setText(mNote.getTitle());
+            mNoteFieldWrapper.getEditText().setText(mNote.getNotes());
         }
 
-        return view;
+        return mView;
     }
 
     @Override
     public void onClick(View v) {
 
-
-        if(mNote == null && (!mTxtFieldTitle.getText().toString().isEmpty() || !mTxtFieldNote.getText().toString().isEmpty())){
-
-            mNote = new Note();
-
-            mNote.setTitle(mTxtFieldTitle.getText().toString());
-            mNote.setNotes(mTxtFieldNote.getText().toString());
-
-            NotesStorage.get(getContext()).addNote(mNote);
-
-            getActivity().setResult(Activity.RESULT_OK);
-            getActivity().finish();
-
-        } else if(mNote != null){
-
-            updateNote();
-
-            getActivity().setResult(Activity.RESULT_OK);
-            getActivity().finish();
-        }
-
-        else {
-
-            Snackbar.make(v, R.string.snackbar_error, Snackbar.LENGTH_SHORT).show();
-        }
+        inputHandling();
     }
 
     /*Updates existing Note*/
     public void updateNote(){
 
-        mNote.setTitle(mTxtFieldTitle.getText().toString());
-        mNote.setNotes(mTxtFieldNote.getText().toString());
+//        mNote.setTitle(mTxtFieldTitle.getText().toString());
+//        mNote.setNotes(mTxtFieldNote.getText().toString());
+        mNote.setTitle(mTitleFieldWrapper.getEditText().getText().toString());
+        mNote.setNotes(mNoteFieldWrapper.getEditText().getText().toString());
         NotesStorage.get(getContext()).updateNote(mNote);
 
+    }
+
+    private void inputHandling(){
+
+        if(mNote == null && mTitleFieldWrapper.getEditText().getText().toString().isEmpty()
+                && mNoteFieldWrapper.getEditText().getText().toString().isEmpty()){
+
+            /*Snackbar snackBar = Snackbar.make(v, R.string.snackbar_error, Snackbar.LENGTH_SHORT);
+            snackBar.getView().setBackground(getResources().getDrawable(R.drawable.background_snackbar_error));
+            snackBar.show();*/
+
+            mTitleFieldWrapper.setError(getResources().getText(R.string.txt_field_error));
+            mNoteFieldWrapper.setErrorEnabled(true);
+            mNoteFieldWrapper.setError(getResources().getText(R.string.txt_field_error));
+
+        } else if(mNote != null){
+            if (mTitleFieldWrapper.getEditText().getText().toString().isEmpty()
+                    && mNoteFieldWrapper.getEditText().getText().toString().isEmpty()){
+
+                mTitleFieldWrapper.setError(getResources().getText(R.string.txt_field_error));
+                mNoteFieldWrapper.setErrorEnabled(true);
+                mNoteFieldWrapper.setError(getResources().getText(R.string.txt_field_error));
+            }else{
+
+                mTitleFieldWrapper.setErrorEnabled(false);
+                mNoteFieldWrapper.setErrorEnabled(false);
+
+                updateNote();
+
+                getActivity().setResult(Activity.RESULT_OK);
+                getActivity().finish();
+            }
+        }
+
+        else {
+
+            mTitleFieldWrapper.setErrorEnabled(false);
+            mNoteFieldWrapper.setErrorEnabled(false);
+
+            mNote = new Note();
+
+            mNote.setTitle(mTitleFieldWrapper.getEditText().getText().toString());
+            mNote.setNotes(mNoteFieldWrapper.getEditText().getText().toString());
+
+            NotesStorage.get(getContext()).addNote(mNote);
+
+            getActivity().setResult(Activity.RESULT_OK);
+            getActivity().finish();
+        }
     }
 }

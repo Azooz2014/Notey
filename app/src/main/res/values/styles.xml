@@ -12,4 +12,8 @@
     <style name="MyActionBar" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <item name="android:textColor">@color/textColorPrimary</item>
     </style>
+
+    <style name="errorAppearance" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/colorError</item>
+    </style>
 </resources>

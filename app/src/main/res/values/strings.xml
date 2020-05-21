@@ -4,14 +4,17 @@
     <string name="btn_txt_done">Save</string>
     <string name="txt_field_notes">Note</string>
     <string name="txt_field_title">Title</string>
+    <string name="txt_field_error">Title or Note cannot be empty!</string>
     <string name="snackbar_error">Title or Note cannot be empty!</string>
     <string name="snackbar_pass">Note Created</string>
     <string name="snackbar_cancelled">Note Discarded</string>
-    <string name="snackbar_unchanged">Note Not Updated</string>
-    <string name="snackbar_update">Note Updated</string>
+    <string name="snackbar_unchanged">Changes Not Saved</string>
+    <string name="snackbar_update">Changes Saved</string>
     <string name="snackbar_deleted">Note Deleted</string>
     <string name="menu_about">About</string>
     <string name="menu_about_body">Crafted with ❤ by Abdelaziz Faki</string>
+    <string name="menu_about_crafted">Crafted with </string>
+    <string name="menu_about_author"> by Abdelaziz Faki</string>
     <string name="about_version">Version: %1$s</string>
     <string name="github_link"> <a href="https://github.com/Azooz2014">Azooz2014</a></string>
     <string name="email">fazouz2010@gmail.com</string>
