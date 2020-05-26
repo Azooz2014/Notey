@@ -7,15 +7,15 @@ import android.support.v4.app.Fragment;
 import io.blacketron.notey.R;
 import io.blacketron.notey.Utils.SingleFragmentActivity;
 
-public class MenuActivity extends SingleFragmentActivity {
+public class AboutActivity extends SingleFragmentActivity {
 
     public static Intent newIntent (Context context){
-        return new Intent(context, MenuActivity.class);
+        return new Intent(context, AboutActivity.class);
     }
 
     @Override
     protected Fragment createFragment() {
-        return MenuFragment.newInstance();
+        return AboutFragment.newInstance();
     }
 
     @Override

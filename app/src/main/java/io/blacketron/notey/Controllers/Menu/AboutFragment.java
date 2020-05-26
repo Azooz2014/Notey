@@ -15,14 +15,14 @@ import android.widget.TextView;
 import io.blacketron.notey.BuildConfig;
 import io.blacketron.notey.R;
 
-public class MenuFragment extends Fragment {
+public class AboutFragment extends Fragment {
 
-    public MenuFragment() {
+    public AboutFragment() {
         // Required empty public constructor
     }
 
-    public static MenuFragment newInstance() {
-        return new MenuFragment();
+    public static AboutFragment newInstance() {
+        return new AboutFragment();
     }
 
     @Override

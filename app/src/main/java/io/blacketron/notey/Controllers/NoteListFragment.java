@@ -46,6 +46,16 @@ public class NoteListFragment extends Fragment implements View.OnClickListener{
 
     private SwipeController mSwipeController;
 
+    private List<Note> mNotes;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        initializeList();
+
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -66,9 +76,9 @@ public class NoteListFragment extends Fragment implements View.OnClickListener{
         mRecyclerView = mView.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        swipeHandler();
+        initializeAdapter(mNotes);
 
-        updateList();
+        swipeHandler();
 
         updateBackground();
 
@@ -121,7 +131,7 @@ public class NoteListFragment extends Fragment implements View.OnClickListener{
 
     private void updateList(){
 
-        NotesStorage notesStorage = NotesStorage.get(getContext());
+        /*NotesStorage notesStorage = NotesStorage.get(getContext());
         List<Note> notes = notesStorage.getNotes();
 
         if(mNoteListAdapter == null){
@@ -132,7 +142,29 @@ public class NoteListFragment extends Fragment implements View.OnClickListener{
 
             mNoteListAdapter.setNotes(notes);
             mNoteListAdapter.notifyDataSetChanged();
+        }*/
+        List<Note> notes = NotesStorage.get(getContext()).getNotes();
+        mNoteListAdapter.setNotes(notes);
+        mNoteListAdapter.notifyDataSetChanged();
+    }
+
+    private void initializeAdapter(List<Note> notes){
+
+        if(mNoteListAdapter == null){
+
+            mNoteListAdapter = new NoteListAdapter(this,notes);
+            mRecyclerView.setAdapter(mNoteListAdapter);
+        }else {
+
+            updateList();
         }
+
+    }
+
+    private void initializeList(){
+
+        mNotes = NotesStorage.get(getContext()).getNotes();
+
     }
 
     private void updateBackground(){
@@ -147,14 +179,13 @@ public class NoteListFragment extends Fragment implements View.OnClickListener{
         }
     }
 
-    //TODO: swipeHandler deletes wrong item.
     public void swipeHandler(){
 
           mSwipeController = new SwipeController(this.getContext(),new SwipeControllerActions() {
             @Override
             public void onRightClicked(View view, int position) {
 
-                mNoteListAdapter.deleteNote(view, mNoteListAdapter.getNote());
+                mNoteListAdapter.deleteNote(view, mNoteListAdapter.getNote(position));
                 mNoteListAdapter.notifyItemRemoved(position);
                 mNoteListAdapter.notifyItemRangeChanged(position, mNoteListAdapter.getItemCount());
 

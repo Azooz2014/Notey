@@ -7,7 +7,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import io.blacketron.notey.Controllers.Menu.MenuActivity;
+import io.blacketron.notey.Controllers.Menu.AboutActivity;
 import io.blacketron.notey.R;
 import io.blacketron.notey.Utils.SingleFragmentActivity;
 
@@ -40,7 +40,10 @@ public class NoteListActivity extends SingleFragmentActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.menu_about:
-                startActivity(MenuActivity.newIntent(this));
+                startActivity(AboutActivity.newIntent(this));
+                return true;
+            case android.R.id.home:
+                setResult(RESULT_CANCELED);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

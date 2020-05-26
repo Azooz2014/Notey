@@ -3,6 +3,7 @@ package io.blacketron.notey.Controllers;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.view.MenuItem;
 
 import java.util.UUID;
 
@@ -40,5 +41,17 @@ public class NoteActivity extends SingleFragmentActivity {
     @Override
     protected int fragmentLayoutRes() {
         return R.id.todo_fragment_container;
+    }
+
+    //Action Bar Up Button option.
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // setResult and close the activity when Action Bar Up Button clicked.
+        if (item.getItemId() == android.R.id.home) {
+            setResult(RESULT_CANCELED);
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

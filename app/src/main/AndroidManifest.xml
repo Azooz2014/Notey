@@ -13,7 +13,7 @@
         android:versionCode="1">
 
         <activity
-            android:name=".Controllers.Menu.MenuActivity"
+            android:name=".Controllers.Menu.AboutActivity"
             android:parentActivityName=".Controllers.NoteListActivity"/>
         <activity android:name=".Controllers.NoteListActivity">
             <intent-filter>

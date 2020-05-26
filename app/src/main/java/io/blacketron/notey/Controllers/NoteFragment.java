@@ -102,6 +102,7 @@ public class NoteFragment extends Fragment implements View.OnClickListener{
 
     private void inputHandling(){
 
+        //Check error for new Note.
         if(mNote == null && mTitleFieldWrapper.getEditText().getText().toString().isEmpty()
                 && mNoteFieldWrapper.getEditText().getText().toString().isEmpty()){
 
@@ -113,6 +114,7 @@ public class NoteFragment extends Fragment implements View.OnClickListener{
             mNoteFieldWrapper.setErrorEnabled(true);
             mNoteFieldWrapper.setError(getResources().getText(R.string.txt_field_error));
 
+            //Check error for existing Note before updating.
         } else if(mNote != null){
             if (mTitleFieldWrapper.getEditText().getText().toString().isEmpty()
                     && mNoteFieldWrapper.getEditText().getText().toString().isEmpty()){
@@ -132,6 +134,7 @@ public class NoteFragment extends Fragment implements View.OnClickListener{
             }
         }
 
+        //Create new Note when there's no errors.
         else {
 
             mTitleFieldWrapper.setErrorEnabled(false);

@@ -67,7 +67,7 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListViewHolder>{
         mNotes = notes;
     }
 
-    public Note getNote() {
-        return mNote;
+    public Note getNote(int position) {
+        return mNote = mNotes.get(position);
     }
 }
